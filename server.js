@@ -12,15 +12,22 @@ const dotenv=require('dotenv')
 dotenv.config()
 // app.use(cors())
 app.use(express.json())
+
 app.get('/',(req,res)=>{
     res.send("helloo")
 })
+// const corsOptions = {
+//   allowedHeaders: ['Content-Type', 'Authorization'],  // Allow Authorization header
+// };
+
+
 const corsOptions = {
-  allowedHeaders: ['Content-Type', 'Authorization'],  // Allow Authorization header
+  origin: '*',
+  methods: ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS'],
+  
+  
 };
-
 app.use(cors(corsOptions));
-
 const response=mongoose.connect(`${process.env.URL}`,{useNewUrlParser: true,
     useUnifiedTopology: true,
   });
